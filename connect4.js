@@ -84,6 +84,7 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg);
 } //end endGame()
 
 /** handleClick: handle click of column top to play piece */
@@ -95,11 +96,12 @@ function handleClick(evt) {
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
   if (y === null) {
-    return;
+    return; //ends handleClick processing
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
+  //? TODO: add line to update in-memory board
+  board[y][x] = currPlayer; //!watch
   placeInTable(y, x);
 
   // check for win
@@ -109,9 +111,14 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+  if (board.every((row) => row.every((cell) => cell > 0))) {
+    endGame("Tie Game!");
+  }
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+
+  //? TODO: switch currPlayer 1 <-> 2
+  currPlayer === 1 ? (currPlayer = 2) : (currPlayer = 1);
 } //end handleClick()
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -132,7 +139,7 @@ function checkForWin() {
     );
   } //end _win()
 
-  // TODO: read and understand this code. Add comments to help you.
+  //? TODO: read and understand this code. Add comments to help you.
 
   for (let y = 0; y < HEIGHT; y++) {
     // -Traverse rows
