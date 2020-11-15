@@ -32,7 +32,7 @@ function makeHtmlBoard() {
   //? TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.querySelector("#board");
 
-  // TODO: add comment for this code
+  //? TODO: add comment for this code
   // create table tr for selection top row
   const top = document.createElement("tr");
   // insert id into top row
@@ -48,7 +48,7 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  // TODO: add comment for this code
+  //? TODO: add comment for this code
   //create row, create cells (td's) in row, append cells to
   //row, append to to table
   for (let y = 0; y < HEIGHT; y++) {
@@ -73,7 +73,11 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+  //? TODO: make a div and insert into correct table cell
+  const tc = document.getElementById(y + "-" + x);
+  const div = document.createElement("div");
+  div.classList.add("piece", `p${currPlayer}`);
+  tc.append(div);
 } //end placeInTable()
 
 /** endGame: announce game end */
