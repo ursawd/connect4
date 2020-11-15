@@ -12,7 +12,7 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 //--------------------------FUNCTIONS--------------------
 /** makeBoard: create in-JS board structure:
@@ -21,6 +21,9 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  board = Array(HEIGHT)
+    .fill(null)
+    .map(() => Array(WIDTH).fill(null));
 } //end makeBoard()
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
