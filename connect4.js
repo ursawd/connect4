@@ -24,7 +24,7 @@ function makeBoard() {
   board = Array(HEIGHT)
     .fill(null)
     .map(() => Array(WIDTH).fill(null));
-} //end makeBoard()
+} //end makeBoard()-------------------------------------
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
@@ -62,7 +62,7 @@ function makeHtmlBoard() {
     }
     htmlBoard.append(row);
   }
-} //end makeHtmlBoard()
+} //end makeHtmlBoard()----------------------------------------------
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
@@ -74,7 +74,7 @@ function findSpotForCol(x) {
     }
   }
   // return 2; //!left over code?
-} //end findSpotForCol()
+} //end findSpotForCol()---------------------------------------------
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
@@ -84,7 +84,7 @@ function placeInTable(y, x) {
   const div = document.createElement("div");
   div.classList.add("piece", `p${currPlayer}`);
   tc.append(div);
-} //end placeInTable()
+} //end placeInTable()------------------------------------------------
 
 /** endGame: announce game end */
 
@@ -92,7 +92,7 @@ function endGame(msg) {
   // TODO: pop up alert message
   setTimeout(() => {
     alert(msg);
-  }, 100);
+  }, 300);
   document.querySelector("h4").classList.toggle("banner");
   document.querySelector("h4").innerText = msg;
   document
@@ -102,7 +102,7 @@ function endGame(msg) {
   function playAgain() {
     location.reload();
   }
-} //end endGame()
+} //end endGame()-------------------------------------------------------
 
 /** handleClick: handle click of column top to play piece */
 
@@ -136,9 +136,10 @@ function handleClick(evt) {
 
   //? TODO: switch currPlayer 1 <-> 2
   currPlayer === 1 ? (currPlayer = 2) : (currPlayer = 1);
-} //end handleClick()
+} //end handleClick()--------------------------------------------------
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
+/** _win: sliding mask defining win path*/
 
 function checkForWin() {
   function _win(cells) {
@@ -154,7 +155,7 @@ function checkForWin() {
         x < WIDTH && // Restrict check to only coord on board
         board[y][x] === currPlayer
     );
-  } //end _win()
+  } //end _win()--------------------------
 
   //? TODO: read and understand this code. Add comments to help you.
 
@@ -193,8 +194,10 @@ function checkForWin() {
       }
     }
   }
-} // end checkForWin()
-//----------------------------CONTROL----------------------------
+} // end checkForWin()----------------------------------------------
+//
+//----------------------------CONTROL-------------------------------
+//
 //add listener to start button, until clicked nothing is create
 makeBoard();
 makeHtmlBoard();
