@@ -18,14 +18,14 @@ h4 {
 }
 #board {
   margin: 0 auto;
-  padding: 5% 0 0 0;
+  padding: 15px 0 0 0;
 }
 .button-container {
   display: flex;
   justify-content: center;
 }
 .btn {
-  margin: 5px;
+  margin: 3px;
   background-color: #484e52;
   color: #e3cdb3;
 }
@@ -54,6 +54,7 @@ h4 {
   color: white;
   font-size: 0.75rem;
   text-align: center;
+  border-radius: 50%;
 }
 
 #column-top td:hover {
@@ -64,10 +65,13 @@ tr:not(#column-top) {
   background-color: #e3cdb3;
 }
 #controls {
-  height: 20vh;
+  height: 18vh;
   background-color: lightslategrey;
 }
 #game {
   background-color: #afb9c5;
   height: 80vh;
+}
+.banner {
+  visibility: hidden;
 }

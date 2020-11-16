@@ -91,6 +91,11 @@ function placeInTable(y, x) {
 function endGame(msg) {
   // TODO: pop up alert message
   alert(msg);
+  document.querySelector("h4").classList.toggle("banner");
+  document.querySelector("h4").innerText = msg;
+  document
+    .getElementById("column-top")
+    .removeEventListener("click", handleClick);
 } //end endGame()
 
 /** handleClick: handle click of column top to play piece */
@@ -184,5 +189,15 @@ function checkForWin() {
   }
 } // end checkForWin()
 //----------------------------CONTROL----------------------------
+//add listener to start button, until clicked nothing is create
 makeBoard();
 makeHtmlBoard();
+// turn off click buttons to place a piece. Turned on in start event
+document.getElementById("column-top").removeEventListener("click", handleClick);
+document.querySelector("#start").addEventListener("click", startGame);
+
+function startGame() {
+  document.getElementById("column-top").addEventListener("click", handleClick);
+  document.querySelector("h4").classList.toggle("banner");
+  document.querySelector("#start").removeEventListener("click", startGame);
+}
