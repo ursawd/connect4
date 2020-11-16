@@ -68,12 +68,12 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   //? TODO: write the real version of this, rather than always returning 0
-  for (let y = HEIGHT - 1; y > 0; y--) {
+  for (let y = HEIGHT - 1; y >= 0; y--) {
     if (board[y][x] === null) {
       return y;
     }
   }
-  return 2;
+  // return 2; //!left over code?
 } //end findSpotForCol()
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -90,12 +90,18 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
-  alert(msg);
+  setTimeout(() => {
+    alert(msg);
+  }, 100);
   document.querySelector("h4").classList.toggle("banner");
   document.querySelector("h4").innerText = msg;
   document
     .getElementById("column-top")
     .removeEventListener("click", handleClick);
+  document.querySelector("#again").addEventListener("click", playAgain);
+  function playAgain() {
+    location.reload();
+  }
 } //end endGame()
 
 /** handleClick: handle click of column top to play piece */
