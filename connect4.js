@@ -44,6 +44,7 @@ function makeHtmlBoard() {
   for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
     headCell.setAttribute("id", x);
+    headCell.innerText = "Click Here";
     top.append(headCell);
   }
   htmlBoard.append(top);
@@ -66,7 +67,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
+  //? TODO: write the real version of this, rather than always returning 0
   for (let y = HEIGHT - 1; y > 0; y--) {
     if (board[y][x] === null) {
       return y;

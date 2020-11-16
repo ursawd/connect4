@@ -1,11 +1,34 @@
 /* game board table */
-
+h1 {
+  text-align: center;
+  padding: 10px 0 0 0;
+  color: white;
+  margin: 0;
+}
+h4 {
+  color: white;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
 #board td {
   width: 50px;
   height: 50px;
   border: solid 1px #666;
 }
-
+#board {
+  margin: 0 auto;
+  padding: 5% 0 0 0;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  margin: 5px;
+  background-color: #484e52;
+  color: #e3cdb3;
+}
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
@@ -27,8 +50,24 @@
 
 #column-top td {
   border: dashed 1px lightgray;
+  background-color: #111f28;
+  color: white;
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 #column-top td:hover {
-  background-color: gold;
+  background-color: rgb(91, 94, 131);
+}
+/* set background color of playing board not the header row*/
+tr:not(#column-top) {
+  background-color: #e3cdb3;
+}
+#controls {
+  height: 20vh;
+  background-color: lightslategrey;
+}
+#game {
+  background-color: #afb9c5;
+  height: 80vh;
 }

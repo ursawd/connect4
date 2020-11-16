@@ -1,15 +1,28 @@
-<!doctype html>
-<head>
-  <title>Connect 4</title>
-  <link href="connect4.css" rel="stylesheet">
-</head>
-<body>
-
-<div id="game">
-  <table id="board"></table>
-</div>
-
-<script src="connect4.js"></script>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Connect 4</title>
+    <link href="connect4.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section id="controls">
+      <h1>Welcome To The Connect-4 Game</h1>
+      <h4>Player 1 Wins</h4>
+      <div class="button-container">
+        <button id="start" class="btn">Start Game</button>
+        <button id="again" class="btn">Play Again</button>
+      </div>
+      <div id="container">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+      </div>
+    </section>
+    <section id="connect4">
+      <div id="game">
+        <table id="board"></table>
+      </div>
+    </section>
+    <script src="connect4.js"></script>
+  </body>
 </html>
