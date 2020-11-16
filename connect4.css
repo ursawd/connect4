@@ -88,3 +88,13 @@ tr:not(#column-top) {
 .banner {
   visibility: hidden;
 }
+#line1,
+#line2 {
+  text-align: center;
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+#line2 {
+  color: blue;
+}
