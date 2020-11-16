@@ -8,11 +8,11 @@
 "use strict"; //added by PDB
 
 //-----------------------INITIALIZATION------------------
-const WIDTH = 7;
-const HEIGHT = 6;
+const WIDTH = 7; // number of board squares across
+const HEIGHT = 6; // number of board squares vertically
 
 let currPlayer = 1; // active player: 1 or 2
-let board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // will be array of rows, each row is array of cells  (board[y][x])
 
 //--------------------------FUNCTIONS--------------------
 /** makeBoard: create in-JS board structure:
@@ -20,19 +20,16 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  //? TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  // makes 2D array filled w/ null.
   board = Array(HEIGHT)
     .fill(null)
     .map(() => Array(WIDTH).fill(null));
-} //end makeBoard()-------------------------------------
+}
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  //? TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.querySelector("#board");
-
-  //? TODO: add comment for this code
   // create table tr for selection top row
   const top = document.createElement("tr");
   // insert id into top row
@@ -49,7 +46,6 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  //? TODO: add comment for this code
   //create row, create cells (td's) in row, append cells to
   //row, append to to table
   for (let y = 0; y < HEIGHT; y++) {
@@ -62,47 +58,39 @@ function makeHtmlBoard() {
     }
     htmlBoard.append(row);
   }
-} //end makeHtmlBoard()----------------------------------------------
+}
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  //? TODO: write the real version of this, rather than always returning 0
   for (let y = HEIGHT - 1; y >= 0; y--) {
     if (board[y][x] === null) {
       return y;
     }
   }
-  // return 2; //!left over code?
-} //end findSpotForCol()---------------------------------------------
+}
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  //? TODO: make a div and insert into correct table cell
   const tc = document.getElementById(y + "-" + x);
   const div = document.createElement("div");
   div.classList.add("piece", `p${currPlayer}`);
   tc.append(div);
-} //end placeInTable()------------------------------------------------
+}
 
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
-  setTimeout(() => {
-    alert(msg);
-  }, 300);
   document.querySelector("h4").classList.toggle("banner");
   document.querySelector("h4").innerText = msg;
   document
     .getElementById("column-top")
     .removeEventListener("click", handleClick);
-  document.querySelector("#again").addEventListener("click", playAgain);
-  function playAgain() {
-    location.reload();
-  }
-} //end endGame()-------------------------------------------------------
+  document
+    .querySelector("#again")
+    .addEventListener("click", () => location.reload());
+}
 
 /** handleClick: handle click of column top to play piece */
 
@@ -112,13 +100,13 @@ function handleClick(evt) {
 
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
-  if (y === null) {
-    return; //ends handleClick processing
+  // using == instead of === checks for both undefined and null
+  if (y == null) {
+    return;
   }
 
   // place piece in board and add to HTML table
-  //? TODO: add line to update in-memory board
-  board[y][x] = currPlayer; //!watch
+  board[y][x] = currPlayer;
   placeInTable(y, x);
 
   // check for win
@@ -127,16 +115,15 @@ function handleClick(evt) {
   }
 
   // check for tie
-  //? TODO: check if all cells in board are filled; if so call, call endGame
+  // any used cell should = 1 or 2.
   if (board.every((row) => row.every((cell) => cell > 0))) {
     endGame("Tie Game!");
   }
 
   // switch players
 
-  //? TODO: switch currPlayer 1 <-> 2
   currPlayer === 1 ? (currPlayer = 2) : (currPlayer = 1);
-} //end handleClick()--------------------------------------------------
+}
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 /** _win: sliding mask defining win path*/
@@ -155,9 +142,7 @@ function checkForWin() {
         x < WIDTH && // Restrict check to only coord on board
         board[y][x] === currPlayer
     );
-  } //end _win()--------------------------
-
-  //? TODO: read and understand this code. Add comments to help you.
+  }
 
   for (let y = 0; y < HEIGHT; y++) {
     // -Traverse rows
@@ -194,19 +179,20 @@ function checkForWin() {
       }
     }
   }
-} // end checkForWin()----------------------------------------------
-//
-//----------------------------CONTROL-------------------------------
-//
-//add listener to start button, until clicked nothing is create
-makeBoard();
-makeHtmlBoard();
-// turn off click buttons to place a piece. Turned on in start event
-document.getElementById("column-top").removeEventListener("click", handleClick);
-document.querySelector("#start").addEventListener("click", startGame);
+}
 
+//starts game by activation 'click here' buttons
 function startGame() {
   document.getElementById("column-top").addEventListener("click", handleClick);
   document.querySelector("h4").classList.toggle("banner");
   document.querySelector("#start").removeEventListener("click", startGame);
 }
+
+//----------------------------CONTROL-------------------------------
+//
+makeBoard();
+makeHtmlBoard();
+// turn off click buttons to place a piece. Turned on in start event
+document.getElementById("column-top").removeEventListener("click", handleClick);
+// add event listener to start button. only button active
+document.querySelector("#start").addEventListener("click", startGame);

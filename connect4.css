@@ -54,10 +54,10 @@ h4 {
 
 /*? TODO: make pieces red/blue,  depending on player 1/2 piece */
 .p1 {
-  background-color: red;
+  background-color: maroon;
 }
 .p2 {
-  background-color: blue;
+  background-color: steelblue;
 }
 /* column-top is table row of clickable areas for each column */
 
@@ -91,10 +91,10 @@ tr:not(#column-top) {
 #line1,
 #line2 {
   text-align: center;
-  color: red;
+  color: maroon;
   margin: 0;
   padding: 0;
 }
 #line2 {
-  color: blue;
+  color: steelblue;
 }
